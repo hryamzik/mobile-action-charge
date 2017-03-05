@@ -36,12 +36,18 @@ import (
 	"fmt"
 	"github.com/jacobsa/go-serial/serial"
 	"log"
+	"os"
 )
 
 func main() {
 	// Set up options.
+	portpath := "/dev/ttyUSB0"
+	if len(os.Args) > 1 {
+		portpath = string(os.Args[1])
+	}
+
 	options := serial.OpenOptions{
-		PortName:        "/dev/tty.usbserial",
+		PortName:        portpath,
 		BaudRate:        9600,
 		DataBits:        8,
 		StopBits:        1,
